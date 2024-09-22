@@ -16,8 +16,8 @@ VALUES
 (4, 'Emily Davis', 70000.00, 'Marketing'),
 (5, 'Michael Wilson', 90000.00, 'Operations');
 SELECT * FROM Employee;
-#Stored Procedure: Encapsulates SQL code for reuse and efficient execution.
-#Basic syntax for creating a stored procedure in SQL
+-- #Stored Procedure: Encapsulates SQL code for reuse and efficient execution.
+-- #Basic syntax for creating a stored procedure in SQL
 DELIMITER //
 CREATE PROCEDURE procedure_name (IN parameter1 datatype, OUT parameter2 datatype, INOUT parameter3 datatype)
 BEGIN
@@ -44,17 +44,17 @@ BEGIN
 END //
 DELIMITER ;
 
-#GetEmployeeDetails: The name of the stored procedure.
-#IN emp_id INT: An input parameter emp_id of type INT, which will be used to filter the query.
-#SELECT * FROM Employee WHERE Employee_ID = emp_id: Retrieves all details of the employee whose Employee_ID 
-#matches the input parameter.
+-- #GetEmployeeDetails: The name of the stored procedure.
+-- #IN emp_id INT: An input parameter emp_id of type INT, which will be used to filter the query.
+-- #SELECT * FROM Employee WHERE Employee_ID = emp_id: Retrieves all details of the employee whose Employee_ID 
+-- #matches the input parameter.
 
-#Syntax to Call a Stored Procedure:
+-- #Syntax to Call a Stored Procedure:
 CALL procedure_name();
 
 CALL GetEmployeeDetails(3);
 
-#Syntax to Drop a Stored Procedure:
+-- #Syntax to Drop a Stored Procedure:
 DROP PROCEDURE procedure_name;
 
 DROP PROCEDURE IF EXISTS GetEmployeeDetails;
@@ -98,6 +98,6 @@ SELECT @current_salary AS Updated_Salary;
 
 SHOW PROCEDURE STATUS WHERE Db = 'SP_EMPLOYEEDEMO';
 
-#Stored Procedure: Encapsulates SQL code for reuse and efficient execution.
-#Procedure Execution: Uses CALL to execute the procedure.
-#Drop Procedure: Deletes the stored procedure from the database.
+-- #Stored Procedure: Encapsulates SQL code for reuse and efficient execution.
+-- #Procedure Execution: Uses CALL to execute the procedure.
+-- #Drop Procedure: Deletes the stored procedure from the database.

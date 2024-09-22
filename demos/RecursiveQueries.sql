@@ -1,10 +1,10 @@
 CREATE DATABASE CTEDEMO;
 USE CTEDEMO;
 
-#A Recursive Query in SQL is a query that refers to itself. 
-#It is used to handle hierarchical data or situations where a set of rows is defined in terms of other rows 
-#in the same table, such as in organizational structures. 
-#Recursive queries are typically written using Common Table Expressions (CTEs) with the WITH RECURSIVE clause.
+-- #A Recursive Query in SQL is a query that refers to itself. 
+-- #It is used to handle hierarchical data or situations where a set of rows is defined in terms of other rows 
+-- #in the same table, such as in organizational structures. 
+-- #Recursive queries are typically written using Common Table Expressions (CTEs) with the WITH RECURSIVE clause.
 
 WITH RECURSIVE cte_name AS (
     -- Anchor member: base case query
@@ -21,12 +21,12 @@ WITH RECURSIVE cte_name AS (
 )
 SELECT * FROM cte_name;
 
-#WITH RECURSIVE: This keyword starts the recursive CTE.
-#cte_name: The name of the Common Table Expression (CTE).
-#The Anchor member is the initial query that fetches the starting set of data.
-#UNION ALL: Combines the anchor query result with the recursive result.
-#The Recursive member retrieves data recursively by referring back to the CTE itself.
-#SELECT * FROM cte_name gives the full result after recursion completes.
+-- #WITH RECURSIVE: This keyword starts the recursive CTE.
+-- #cte_name: The name of the Common Table Expression (CTE).
+-- #The Anchor member is the initial query that fetches the starting set of data.
+-- #UNION ALL: Combines the anchor query result with the recursive result.
+-- #The Recursive member retrieves data recursively by referring back to the CTE itself.
+-- #SELECT * FROM cte_name gives the full result after recursion completes.
 
 
 CREATE TABLE Employee (
@@ -44,8 +44,8 @@ INSERT INTO Employee (Employee_ID, Employee_Name, Manager_ID) VALUES
 
 SELECT * FROM Employee;
 
-#Example 1: Retrieve Employee Hierarchy
-#This query retrieves all employees and their managers recursively.
+-- #Example 1: Retrieve Employee Hierarchy
+-- #This query retrieves all employees and their managers recursively.
 
 WITH RECURSIVE EmployeeHierarchy AS (
     -- Anchor member: Select the top-level employees (those without a manager)
@@ -63,8 +63,8 @@ WITH RECURSIVE EmployeeHierarchy AS (
 SELECT * FROM EmployeeHierarchy;
 
 
-#Example 2: Find All Employees Under a Specific Manager
-#This query finds all employees under a specific manager (e.g., Alice).
+-- #Example 2: Find All Employees Under a Specific Manager
+-- #This query finds all employees under a specific manager (e.g., Alice).
 WITH RECURSIVE EmployeeUnderManager AS (
     -- Anchor member: Select Alice (Employee_ID = 1)
     SELECT Employee_ID, Employee_Name, Manager_ID
@@ -86,10 +86,10 @@ FROM Employee
 WHERE Employee_ID = 1;
 
 
-#Scenario: Student and Mentor Hierarchy
-#Consider a scenario where you have students, and each student may have a mentor. 
-#A mentor is also a student, and there can be multiple levels of mentorship. 
-#You want to find all students and their mentors starting from a specific student.
+-- #Scenario: Student and Mentor Hierarchy
+-- #Consider a scenario where you have students, and each student may have a mentor. 
+-- #A mentor is also a student, and there can be multiple levels of mentorship. 
+-- #You want to find all students and their mentors starting from a specific student.
 
 CREATE TABLE Student (
     Student_ID INT PRIMARY KEY,
@@ -104,8 +104,8 @@ INSERT INTO Student (Student_ID, Student_Name, Mentor_ID) VALUES
 (4, 'David', 2),       -- David is mentored by Bob
 (5, 'Eva', 3);         -- Eva is mentored by Charlie
 
-#Query 1: Retrieve all students under a specific student (e.g., Alice)
-#This query retrieves all students directly or indirectly mentored by Alice, using recursive SQL.
+-- #Query 1: Retrieve all students under a specific student (e.g., Alice)
+-- #This query retrieves all students directly or indirectly mentored by Alice, using recursive SQL.
 
 WITH RECURSIVE StudentHierarchy AS (
     -- Anchor member: Select Alice
@@ -122,8 +122,8 @@ WITH RECURSIVE StudentHierarchy AS (
 )
 SELECT * FROM StudentHierarchy;
 
-#Query 2: Retrieve the mentor chain for a specific student (e.g., David)
-#This query retrieves the mentor hierarchy for David, showing who mentors whom, all the way up the chain.
+-- #Query 2: Retrieve the mentor chain for a specific student (e.g., David)
+-- #This query retrieves the mentor hierarchy for David, showing who mentors whom, all the way up the chain.
 
 WITH RECURSIVE MentorChain AS (
     -- Anchor member: Select David

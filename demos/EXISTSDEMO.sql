@@ -26,7 +26,7 @@ INSERT INTO Department VALUES (104, 'Marketing');
 SELECT * FROM Employee;
 SELECT * FROM Department;
 
-#Retrieve employees working in a department that starts with 'M'.
+-- -- #Retrieve employees working in a department that starts with 'M'.
 SELECT Employee_Name 
 FROM Employee e
 WHERE EXISTS 
@@ -34,27 +34,27 @@ WHERE EXISTS
 
 SELECT * FROM Department d WHERE d.Department_Name LIKE 'M%'; 
 
-#Find all employees who are not part of the 'Marketing' department.
+-- -- #Find all employees who are not part of the 'Marketing' department.
 SELECT Employee_Name 
 FROM Employee e
 WHERE NOT EXISTS (SELECT 1 FROM Department d WHERE d.Department_Name = 'Marketing' AND d.Department_ID = e.Department_ID);
 
-#Retrieve the names of employees who belong to departments with an "IT" department.
+-- -- #Retrieve the names of employees who belong to departments with an "IT" department.
 SELECT Employee_Name 
 FROM Employee e
 WHERE EXISTS (SELECT 1 FROM Department d WHERE d.Department_Name = 'IT' AND d.Department_ID = e.Department_ID);
 
-#Check if there are any employees in the "HR" department.
+-- -- #Check if there are any employees in the "HR" department.
 SELECT 'HR Department Exists'
 WHERE EXISTS (SELECT 1 FROM Employee WHERE Department_ID = 101);
 
 
-#List all departments that don’t have any employees.
+-- -- #List all departments that don’t have any employees.
 SELECT Department_Name 
 FROM Department d
 WHERE NOT EXISTS (SELECT 1 FROM Employee e WHERE e.Department_ID = d.Department_ID);
 
 
-#Check if any department has a name containing the letter 'F'.
+-- -- #Check if any department has a name containing the letter 'F'.
 SELECT 'Departments with F exists'
 WHERE EXISTS (SELECT 1 FROM Department WHERE Department_Name LIKE '%F%');

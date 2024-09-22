@@ -28,66 +28,66 @@ INSERT INTO EMPLOYEE VALUES ('Ava', 'J', 'Brown', '321654987', '1987-01-20', '13
 SELECT * 
 FROM EMPLOYEE;
 
-#1. Find the Names of All Employees
+-- #1. Find the Names of All Employees
 SELECT Ename, Minit, Lname 
 FROM EMPLOYEE;
 
-#2. Retrieve the Name and Address of All Employees
+-- #2. Retrieve the Name and Address of All Employees
 SELECT Ename, Lname, Address 
 FROM EMPLOYEE;
 
-#3. Retrieve the Distinct Name and Address of All Employees
+-- #3. Retrieve the Distinct Name and Address of All Employees
 SELECT DISTINCT Ename, Lname, Address 
 FROM EMPLOYEE;
-#The DISTINCT keyword ensures that only unique combinations of name and address are displayed.
+-- #The DISTINCT keyword ensures that only unique combinations of name and address are displayed.
 
-#4. Find All Employees in Department No 5
+-- #4. Find All Employees in Department No 5
 SELECT Ename, Lname 
 FROM EMPLOYEE 
 WHERE Dno = 5;
 
-#5. For Every Project Located in ‘Stafford’, List the Project Info and Manager Details
+-- #5. For Every Project Located in ‘Stafford’, List the Project Info and Manager Details
 SELECT Pnumber, Dno, Lname, Address, Bdate
 FROM PROJECT
 JOIN DEPARTMENT ON PROJECT.Dno = DEPARTMENT.Dnumber
 JOIN EMPLOYEE ON DEPARTMENT.Mgr_SSN = EMPLOYEE.SSN
 WHERE Plocation = 'Stafford';
 
-#6. List the Number of Male and Female Employees
+-- #6. List the Number of Male and Female Employees
 SELECT Gender, COUNT(*) AS Number_of_Employees
 FROM EMPLOYEE
 GROUP BY Gender;
 
-#7. List the Department Number Along With the Number of Employees Where the Department Has More Than or 
-#Equal to 2 Employees.
+-- #7. List the Department Number Along With the Number of Employees Where the Department Has More Than or 
+-- #Equal to 2 Employees.
 SELECT Dno, COUNT(*) AS Employee_Count
 FROM EMPLOYEE
 GROUP BY Dno
 HAVING COUNT(*) >= 2;
 
-#8.  List the Employees Based on Descending Order of Their Salary
+-- #8.  List the Employees Based on Descending Order of Their Salary
 SELECT Ename, Lname, Salary 
 FROM EMPLOYEE
 ORDER BY Salary DESC;
 
-#9. List the Employees Based on Ascending Order of Their Salary
+-- #9. List the Employees Based on Ascending Order of Their Salary
 SELECT Ename, Lname, Salary 
 FROM EMPLOYEE
 ORDER BY Salary ASC;
 
 
-#10. Find the Annual Salary of Employees.
+-- #10. Find the Annual Salary of Employees.
 SELECT Ename, Lname, Salary * 12 AS Annual_Salary
 FROM EMPLOYEE;
 
 
-#11. Retrieve All Employees Whose Address is in Houston, Texas
+-- #11. Retrieve All Employees Whose Address is in Houston, Texas
 SELECT Ename, Lname, Address 
 FROM EMPLOYEE 
 WHERE Address LIKE '%Houston, TX%';
 
 
-#12. Find All Employees Who Were Born During the 1960s
+-- #12. Find All Employees Who Were Born During the 1960s
 SELECT Ename, Lname, Bdate 
 FROM EMPLOYEE 
 WHERE Bdate BETWEEN '1960-01-01' AND '1969-12-31';

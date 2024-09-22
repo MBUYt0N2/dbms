@@ -1,7 +1,7 @@
 CREATE DATABASE FUNCTIONDEMO;
 USE FUNCTIONDEMO;
 
-#Syntax to Create a Function:
+-- #Syntax to Create a Function:
 CREATE FUNCTION function_name (parameter1 datatype, parameter2 datatype, ...)
 RETURNS return_datatype
 DETERMINISTIC
@@ -13,10 +13,10 @@ BEGIN
     RETURN result;
 END;
 
-#function_name: Name of the function.
-#parameter1, parameter2: Input parameters.
-#return_datatype: The type of value the function will return (e.g., INT, VARCHAR, etc.).
-#DETERMINISTIC: Specifies whether the function will return the same value when given the same input.
+-- #function_name: Name of the function.
+-- #parameter1, parameter2: Input parameters.
+-- #return_datatype: The type of value the function will return (e.g., INT, VARCHAR, etc.).
+-- #DETERMINISTIC: Specifies whether the function will return the same value when given the same input.
 
 CREATE TABLE Employee (
     Employee_ID INT PRIMARY KEY,
@@ -40,8 +40,8 @@ VALUES (101, 'HR'),
        (102, 'Finance'),
        (103, 'Marketing');
 
-#Function to Get Department Name
-#Create a function to retrieve the department name for a given department ID.
+-- #Function to Get Department Name
+-- #Create a function to retrieve the department name for a given department ID.
 DELIMITER //       
 CREATE FUNCTION Get_Department_Name (dept_id INT)
 RETURNS VARCHAR(100)
@@ -60,7 +60,7 @@ SELECT Employee_Name, Get_Department_Name(Department_ID) AS Department
 FROM Employee;
 
 
-#To Drop a Function:
+-- #To Drop a Function:
 DROP FUNCTION IF EXISTS function_name;
 
 DROP FUNCTION IF EXISTS Get_Department_Name;
