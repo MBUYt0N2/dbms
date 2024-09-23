@@ -25,15 +25,15 @@ BEGIN
 END; //
 DELIMITER ;
 
-DELIMITER //: Changes the statement delimiter to // instead of the default ; 
-CREATE PROCEDURE: Used to create the stored procedure.
-procedure_name: The name of the stored procedure.
-IN, OUT, INOUT: Specifies the mode of parameters:
-IN: Input parameter.
-OUT: Output parameter.
-INOUT: Both input and output parameter.
-datatype: The data type of the parameter (e.g., INT, VARCHAR).
-BEGIN...END: The block where you write the SQL statements that the procedure will execute.
+-- DELIMITER //: Changes the statement delimiter to // instead of the default ; 
+-- CREATE PROCEDURE: Used to create the stored procedure.
+-- procedure_name: The name of the stored procedure.
+-- IN, OUT, INOUT: Specifies the mode of parameters:
+-- IN: Input parameter.
+-- OUT: Output parameter.
+-- INOUT: Both input and output parameter.
+-- datatype: The data type of the parameter (e.g., INT, VARCHAR).
+-- BEGIN...END: The block where you write the SQL statements that the procedure will execute.
 
 DELIMITER //
 CREATE PROCEDURE GetEmployeeDetails(IN emp_id INT)
