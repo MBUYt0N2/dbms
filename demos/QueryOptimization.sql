@@ -6,18 +6,18 @@ Query optimization aims to reduce the response time, memory usage, and CPU load 
 database.
 
 -- #2. Why is Query Optimization Important?
-- Faster Query Execution: Optimized queries run faster, saving time and resources.
-- Efficient Resource Usage: Helps minimize CPU, memory, and disk usage.
-- Handles Large Data Efficiently: Optimized queries perform well even with large datasets, improving scalability.
+-- - Faster Query Execution: Optimized queries run faster, saving time and resources.
+-- - Efficient Resource Usage: Helps minimize CPU, memory, and disk usage.
+-- - Handles Large Data Efficiently: Optimized queries perform well even with large datasets, improving scalability.
   
 -- # 3. Query Optimization Techniques:
-1. Indexes: Use indexes on columns that are frequently queried to improve search performance.
-2. Avoid Select *: Instead of retrieving all columns using `SELECT *`, specify only the required columns.
-3. Joins vs Subqueries: Use JOINS instead of subqueries where applicable for better performance.
-4. Use of EXISTS vs IN: The `EXISTS` clause is often faster than `IN`, especially with large datasets.
-5. Limit the Rows: Use `LIMIT` or `TOP` to restrict the number of rows retrieved when only a subset is required.
-6. Avoid Functions on Indexed Columns: Performing operations like `UPPER()` or `LOWER()` on indexed columns 
-can prevent the index from being used.
+-- 1. Indexes: Use indexes on columns that are frequently queried to improve search performance.
+-- 2. Avoid Select *: Instead of retrieving all columns using `SELECT *`, specify only the required columns.
+-- 3. Joins vs Subqueries: Use JOINS instead of subqueries where applicable for better performance.
+-- 4. Use of EXISTS vs IN: The `EXISTS` clause is often faster than `IN`, especially with large datasets.
+-- 5. Limit the Rows: Use `LIMIT` or `TOP` to restrict the number of rows retrieved when only a subset is required.
+-- 6. Avoid Functions on Indexed Columns: Performing operations like `UPPER()` or `LOWER()` on indexed columns 
+-- can prevent the index from being used.
 
 -- # 4. Example of Basic Query Optimization:
 
@@ -51,8 +51,8 @@ SELECT * FROM Employee WHERE Name = 'John';
 
 -- # 1. Definition:
 -- #A Subquery is a query nested inside another query. While subqueries can simplify complex queries, 
-they can also lead to performance issues if not written carefully. 
-Subquery Optimization focuses on improving the performance of queries that contain subqueries by transforming or restructuring them.
+-- they can also lead to performance issues if not written carefully. 
+-- Subquery Optimization focuses on improving the performance of queries that contain subqueries by transforming or restructuring them.
 
 
 -- # 3. General Tips for Subquery Optimization:
@@ -151,4 +151,4 @@ WHERE w.Project_ID = 101;
 -- # Query Optimization helps in reducing the execution time and resource consumption of SQL queries.
 -- # Indexes are a key element in speeding up searches and lookups.
 -- # Subquery Optimization involves restructuring queries for better performance, 
-often by replacing subqueries with JOINs or using EXISTS instead of IN.
+-- often by replacing subqueries with JOINs or using EXISTS instead of IN.
