@@ -13,7 +13,7 @@ CREATE PROCEDURE Insert_Employee_Data()
 BEGIN
     DECLARE i INT DEFAULT 1;
 
-    WHILE i <= 100000 DO
+    WHILE i <= 1000 DO
         INSERT INTO Employee (Employee_ID, Employee_Name, Employee_Salary, Department_ID)
         VALUES (i, CONCAT('Employee', i), ROUND(RAND() * (100000 - 20000) + 20000, 2), FLOOR(RAND() * 10) + 1);
         
@@ -44,7 +44,7 @@ EXPLAIN SELECT * FROM Employee WHERE Department_ID = 50000;
 
 
 SET @start_time = NOW();
-SELECT * FROM Employee WHERE Department_ID = 50000;
+SELECT * FROM Employee WHERE Department_ID = 5;
 SET @end_time = NOW();
 SELECT TIMESTAMPDIFF(MICROSECOND, @start_time, @end_time) AS ExecutionTime;
 
