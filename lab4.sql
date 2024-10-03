@@ -24,42 +24,46 @@ ORDER BY
     item_name,
     time_of_day ASC;
 
--- with t1 as (
---     select
---         registration.event_id,
---         participant.department,
---         count(participant.SRN) as dept
---     from
---         registration
---         join participant on registration.SRN = participant.SRN
---     group by
---         registration.event_id,
---         participant.department
---     order by
---         event_id,
---         dept desc;
--- )
--- select
---     event.event_id,
---     event.event_name,
--- from
---     event
---     join t1 on event.event_id = t1.event_id
--- group by
---     event.event_id;
+SELECT
+    event_id,
+    event_name,
+    dept
+FROM
+    (
+        SELECT
+            event.event_id,
+            event.event_name,
+            (
+                SELECT
+                    participant.department
+                FROM
+                    participant
+                    JOIN registration ON participant.SRN = registration.SRN
+                WHERE
+                    registration.event_id = event.event_id
+                GROUP BY
+                    participant.department
+                ORDER BY
+                    COUNT(*) DESC
+                LIMIT
+                    1
+            ) AS dept
+        FROM
+            event
+    ) AS subq
+WHERE
+    dept != 'Computer Science';
 
-
-select
-    distinct(ec.event_id),
+SELECT
+    DISTINCT ec.event_id,
     event.event_name
-from
+FROM
     event_conduction ec
-    join event_conduction ec1 on ec.date_of_conduction = ec1.date_of_conduction
-    join event on ec.event_id = event.event_id
-where
+    JOIN event_conduction ec1 ON ec.date_of_conduction = ec1.date_of_conduction
+    JOIN event ON ec.event_id = event.event_id
+WHERE
     ec1.event_id = 'E1'
-    or ec.event_id = 'E1';
-
+    OR ec.event_id = 'E1';
 
 SELECT
     DISTINCT s.stall_id,
@@ -76,3 +80,31 @@ WHERE
             si.stall_id = s.stall_id
             AND si.item_name LIKE '%Chicken%'
     );
+
+WITH t1 AS (
+    SELECT
+        event.event_id,
+        event.event_name,
+        COUNT(registration.registration_id) AS c
+    FROM
+        event
+        JOIN registration ON event.event_id = registration.event_id
+    GROUP BY
+        event.event_id,
+        registration.registration_id
+)
+SELECT
+    event_name,
+    CASE
+        WHEN MAX(c) > 1 THEN 'group event'
+        WHEN MAX(c) = 1 THEN 'individual event'
+    END AS type_of_event,
+    MAX(c) AS Max_participants,
+    MIN(c) AS Min_participants
+FROM
+    t1
+GROUP BY
+    event_id
+ORDER BY
+    Max_participants DESC,
+    Min_participants DESC;
