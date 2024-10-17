@@ -98,11 +98,3 @@ SHOW GRANTS FOR 'Diana'@'%';
 SHOW GRANTS FOR 'Andres'@'%';
 SHOW GRANTS FOR 'Bella'@'%';
 SHOW GRANTS FOR 'Derik'@'%';
-
-SELECT stall_items.total_quantity - SUM(purchased.quantity) 
-    FROM stall_items 
-     JOIN purchased ON purchased.stall_id = stall_items.stall_id 
-                       AND purchased.item_name = stall_items.item_name
-    WHERE stall_items.stall_id = 'S1'
-      AND stall_items.item_name = 'Caprese Salad'
-    GROUP BY stall_items.stall_id, stall_items.item_name;
