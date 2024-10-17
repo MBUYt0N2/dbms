@@ -23,6 +23,8 @@ END //
 
 DELIMITER ;
 
+INSERT INTO registration VALUES ('E11', 'P1009', 'R61');
+
 DELIMITER //
 
 CREATE TRIGGER before_purchase 
@@ -46,6 +48,8 @@ END //
 
 DELIMITER ;
 
+INSERT INTO purchased VALUES ('P1001', 'S1', 'Caprese Salad', '2024-10-14 10:00:00', 9);
+INSERT INTO purchased VALUES ('P1001', 'S1', 'Caprese Salad', '2024-10-14 10:00:00', 99);
 
 CREATE ROLE participant;
 CREATE ROLE team_coordinator;
@@ -95,3 +99,10 @@ SHOW GRANTS FOR 'Andres'@'%';
 SHOW GRANTS FOR 'Bella'@'%';
 SHOW GRANTS FOR 'Derik'@'%';
 
+SELECT stall_items.total_quantity - SUM(purchased.quantity) 
+    FROM stall_items 
+     JOIN purchased ON purchased.stall_id = stall_items.stall_id 
+                       AND purchased.item_name = stall_items.item_name
+    WHERE stall_items.stall_id = 'S1'
+      AND stall_items.item_name = 'Caprese Salad'
+    GROUP BY stall_items.stall_id, stall_items.item_name;
